@@ -1,0 +1,42 @@
+.conteudo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+.forca{
+    display: flex;
+    justify-content: space-between;
+}
+.forca button{
+    width: 15s0px;
+    height: 50px;
+}
+.conteudo img{
+    width: 40%;
+}
+.teclado{
+    width: 700px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid black;
+}
+.botao{
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;    
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chute{
+    width: 400px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
