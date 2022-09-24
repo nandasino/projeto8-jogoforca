@@ -6,8 +6,10 @@ export default function App() {
     function comparador() { 
         return Math.random() - 0.5; 
     } 
-    const [vida,setVida] = useState(6);
+    const imagens = ['/assets/forca0.png', '/assets/forca1.png', '/assets/forca2.png', '/assets/forca3.png', '/assets/forca4.png', '/assets/forca5.png', '/assets/forca6.png']
+    const [vida,setVida] = useState(0);
     const [palavra, setPalavra] = useState([]);
+    const [imagem, setImagem] = useState(imagens[0]);
     function escolherPalavra(){
         const embalharado = palavras.sort(comparador);
         const novaPalavra= embalharado[0];
@@ -21,15 +23,16 @@ export default function App() {
         }
         else{
             console.log("não tem essa letra");
-            setVida(vida-1);
+            setVida(vida+1);
+            setImagem(imagens[vida+1]);
         }
     }
-    const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     return (
         <div className='conteudo'>
             <div className='forca'>
-                <img src='/assets/forca0.png'></img>
-                <p>Vidas: {vida}</p>
+                <img src= {imagem}></img>
+                <p>Vidas usadas: {vida}</p>
                 <button onClick={escolherPalavra}>Escolher a palavra</button>
                 {palavra.map((p)=> "_ ")}
             </div>
