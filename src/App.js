@@ -10,6 +10,7 @@ export default function App() {
     const [vida,setVida] = useState(0);
     const [palavra, setPalavra] = useState([]);
     const [imagem, setImagem] = useState(imagens[0]);
+    const [dica,setDica] = useState([]);
     function escolherPalavra(){
         const embalharado = palavras.sort(comparador);
         const novaPalavra= embalharado[0];
@@ -20,6 +21,8 @@ export default function App() {
         console.log(palavra);
         if(palavra.includes(letra)){
             console.log("tem essa letra");
+            const novoArray = [...palavra];
+            setDica(novoArray);
         }
         else{
             console.log("não tem essa letra");
@@ -27,12 +30,15 @@ export default function App() {
             setImagem(imagens[vida+1]);
         }
     }
-    function fimDeJogo(){
+    function fimDeJogo(letra){
         if(vida>=6){
             alert("acabou o jogo");
         }
         if (palavra.length === 0){
             alert("escolha uma palavra");
+        }
+        if (dica.includes(letra)){
+            alert("voce ja escolheu essa letra");
         }
     }
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -42,9 +48,9 @@ export default function App() {
                 <img src= {imagem}></img>
                 <p>Vidas usadas: {vida}</p>
                 <button onClick={escolherPalavra}>Escolher a palavra</button>
-                {palavra.map((p)=> "_ ")}
+                {dica}
             </div>
-            <div className='teclado'>{alfabeto.map((l,index)=><div onClick={ vida<6 && palavra.length !== 0? ()=> tentarLetra(l): ()=>fimDeJogo() } className='botao'>{l}</div>)}</div>
+            <div className='teclado'>{alfabeto.map((l,index)=><div onClick={ vida<6 && palavra.length !== 0 && !dica.includes(l) ? ()=> tentarLetra(l): ()=>fimDeJogo(l) } className='botao'>{l}</div>)}</div>
             <div className='chute'><p>Já sei a palavra</p><input></input><button>Chutar</button></div>
         </div>
     );
