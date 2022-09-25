@@ -10,20 +10,25 @@ export default function App() {
     const [vida,setVida] = useState(0);
     const [palavra, setPalavra] = useState([]);
     const [imagem, setImagem] = useState(imagens[0]);
-    const [dica,setDica] = useState([]);
+    const [tentativas, setTentativas]= useState([]);
+    const [letrasCertas, setLetrasCertas]= useState([]);
+
     function escolherPalavra(){
         const embalharado = palavras.sort(comparador);
         const novaPalavra= embalharado[0];
         const palavraEmArray= novaPalavra.split("");
         setPalavra(palavraEmArray);
-        setDica(palavraEmArray.map(()=>("_ ")))
     }
     function tentarLetra(letra){
+        setTentativas([...tentativas,letra]);
         console.log(palavra);
         if(palavra.includes(letra)){
             console.log("tem essa letra");
-            const novoArray = [...dica,letra];
-            setDica(novoArray);
+            for(let i=0; i< palavra.length; i++){
+                if(letra=== palavra[i]){
+                   setLetrasCertas([...letrasCertas,letra]);
+                }
+            }
         }
         else{
             console.log("não tem essa letra");
@@ -38,7 +43,7 @@ export default function App() {
         if (palavra.length === 0){
             alert("escolha uma palavra");
         }
-        if (dica.includes(letra)){
+        if (tentativas.includes(letra)){
             alert("voce ja escolheu essa letra");
         }
     }
@@ -49,9 +54,16 @@ export default function App() {
                 <img src= {imagem}></img>
                 <p>Vidas usadas: {vida}</p>
                 <button onClick={escolherPalavra}>Escolher a palavra</button>
-                {dica}
+                {tentativas}
+                <div>{palavra.map((l)=>(letrasCertas.includes(l)? l: "_ "))}</div>
             </div>
-            <div className='teclado'>{alfabeto.map((l,index)=><div onClick={ vida<6 && palavra.length !== 0 && !dica.includes(l) ? ()=> tentarLetra(l): ()=>fimDeJogo(l) } className={ `botao ${vida<6 && palavra.length !== 0 && !dica.includes(l) ? "azul": "cinza"}`}>{l}</div>)}</div>
+            <div className='teclado'>
+                {alfabeto.map((l)=>
+                <div onClick={ vida<6 && palavra.length !== 0 && !tentativas.includes(l) 
+                ? ()=> tentarLetra(l): ()=>fimDeJogo(l) } 
+                className={ `botao ${vida<6 && palavra.length !== 0 && !tentativas.includes(l) ? "azul": "cinza"}`}
+                >{l}</div>)}
+            </div>
             <div className='chute'><p>Já sei a palavra</p><input></input><button>Chutar</button></div>
         </div>
     );
