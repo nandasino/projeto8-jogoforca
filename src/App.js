@@ -29,14 +29,12 @@ export default function App() {
         const embalharado = palavras.sort(comparador);
         const novaPalavra= embalharado[0];
         setString(novaPalavra);
-        console.log(novaPalavra);
         const palavraAcento = novaPalavra.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         const palavraEmArray= palavraAcento.split("");
         setPalavra(palavraEmArray);
     }
     function tentarLetra(letra){
         setTentativas([...tentativas,letra]);
-        console.log(palavra);
         if(palavra.includes(letra)){
             console.log("tem essa letra");
             for(let i=0; i< palavra.length; i++){
