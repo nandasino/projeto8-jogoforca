@@ -18,7 +18,9 @@ export default function App() {
     function escolherPalavra(){
         const embalharado = palavras.sort(comparador);
         const novaPalavra= embalharado[0];
-        const palavraEmArray= novaPalavra.split("");
+        console.log(novaPalavra);
+        const palavraAcento = novaPalavra.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        const palavraEmArray= palavraAcento.split("");
         setPalavra(palavraEmArray);
     }
     function tentarLetra(letra){
