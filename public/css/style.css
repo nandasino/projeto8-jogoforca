@@ -46,3 +46,15 @@
 .cinza{
     background-color: gray;
 }
+.aparece{
+    font-size: 40px;
+}
+.some{
+    display: none;
+}
+.verde{
+    color: green;
+}
+.vermelho{
+    color: red;
+}

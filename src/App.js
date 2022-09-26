@@ -12,6 +12,8 @@ export default function App() {
     const [imagem, setImagem] = useState(imagens[0]);
     const [tentativas, setTentativas]= useState([]);
     const [letrasCertas, setLetrasCertas]= useState([]);
+    const[arrayCertas, setArrayCertas]= useState([]);
+    const [resultado, setResultado]= useState([]);
 
     function escolherPalavra(){
         const embalharado = palavras.sort(comparador);
@@ -27,6 +29,11 @@ export default function App() {
             for(let i=0; i< palavra.length; i++){
                 if(letra=== palavra[i]){
                    setLetrasCertas([...letrasCertas,letra]);
+                   arrayCertas.push(letra);
+                   console.log(arrayCertas);
+                   if(arrayCertas.length===palavra.length||vida===6){
+                    setResultado(palavra);
+                   }
                 }
             }
         }
@@ -38,13 +45,13 @@ export default function App() {
     }
     function fimDeJogo(letra){
         if(vida>=6){
-            alert("acabou o jogo");
+            setResultado(palavra);
         }
         if (palavra.length === 0){
             alert("escolha uma palavra");
         }
         if (tentativas.includes(letra)){
-            alert("voce ja escolheu essa letra");
+            return;
         }
     }
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -54,15 +61,14 @@ export default function App() {
                 <img src= {imagem}></img>
                 <p>Vidas usadas: {vida}</p>
                 <button onClick={tentativas.length===0? escolherPalavra: ()=>alert("você não pode mais escolher uma palavra")}>Escolher a palavra</button>
-                {tentativas}
-                <li>{letrasCertas}</li>
-                <div>{palavra.map((l)=>(letrasCertas.includes(l)? l: "_ "))}</div>
+                <div className={resultado.length===0? "aparece": "some"}>{palavra.map((l)=>(letrasCertas.includes(l)? l: "_ "))}</div>
+                <div className={vida<6? "verde": "vermelho"}>{resultado}</div>
             </div>
             <div className='teclado'>
                 {alfabeto.map((l)=>
-                <div onClick={ vida<6 && palavra.length !== 0 && !tentativas.includes(l)
+                <div onClick={ vida<6 && palavra.length !== 0 && !tentativas.includes(l) && resultado.length ===0
                 ? ()=> tentarLetra(l): ()=>fimDeJogo(l) } 
-                className={ `botao ${vida<6 && palavra.length !== 0 && !tentativas.includes(l) ? "azul": "cinza"}`}
+                className={ `botao ${vida<6 && palavra.length !== 0 && !tentativas.includes(l) && resultado.length ===0 ? "azul": "cinza"}`}
                 >{l}</div>)}
             </div>
             <div className='chute'><p>Já sei a palavra</p><input></input><button>Chutar</button></div>
