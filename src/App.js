@@ -86,8 +86,8 @@ export default function App() {
                 <div className="escolher-dica">
                     <button data-identifier="choose-word" onClick={escolherPalavra}>Escolher palavra</button>
                     <div className="dica">
-                        <div data-identifier="word" className={resultado.length===0? "aparece": "some"}>{palavra.map((l)=>(letrasCertas.includes(l)? l: "_ "))}</div>
-                        <div className={vida<6? "verde": "vermelho"}>{resultado}</div>
+                        <div data-identifier="word" className={resultado.length===0 && vida<6? "aparece": "some"}>{palavra.map((l)=>(letrasCertas.includes(l)? l: "_ "))}</div>
+                        <div className={`${vida<6? "verde": "vermelho"} ${resultado.length!==0 || vida===6? "aparece": "some"}`}>{string}</div>
                     </div>
                 </div>
             </div>
