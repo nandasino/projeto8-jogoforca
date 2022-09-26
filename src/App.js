@@ -14,6 +14,8 @@ export default function App() {
     const [letrasCertas, setLetrasCertas]= useState([]);
     const[arrayCertas, setArrayCertas]= useState([]);
     const [resultado, setResultado]= useState([]);
+    const [chute, setChute]= useState("");
+    const [string,setString]= useState("");
 
     function escolherPalavra(){
         setVida(0);
@@ -25,6 +27,7 @@ export default function App() {
         setResultado([]);
         const embalharado = palavras.sort(comparador);
         const novaPalavra= embalharado[0];
+        setString(novaPalavra);
         console.log(novaPalavra);
         const palavraAcento = novaPalavra.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         const palavraEmArray= palavraAcento.split("");
@@ -63,6 +66,16 @@ export default function App() {
             return;
         }
     }
+    function chutar(){
+        if(chute=== string){
+            setResultado(string);
+        }
+        if(chute !== string){
+            setResultado(string);
+            setVida(6);
+            setImagem(imagens[6]);
+        }
+    }
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     return (
         <div className='conteudo'>
@@ -80,7 +93,7 @@ export default function App() {
                 className={ `botao ${vida<6 && palavra.length !== 0 && !tentativas.includes(l) && resultado.length ===0 ? "azul": "cinza"}`}
                 >{l}</div>)}
             </div>
-            <div className='chute'><p>Já sei a palavra</p><input></input><button>Chutar</button></div>
+            <div className='chute'><p>Já sei a palavra</p><input placeholder="" value={chute} onChange={e => setChute(e.target.value)} /><button onClick={chutar}>Chutar</button></div>
         </div>
     );
 }
