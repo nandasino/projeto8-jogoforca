@@ -25,6 +25,7 @@ export default function App() {
         setLetrasCertas([]);
         setArrayCertas([]);
         setResultado([]);
+        setString("");
         const embalharado = palavras.sort(comparador);
         const novaPalavra= embalharado[0];
         setString(novaPalavra);
@@ -44,7 +45,7 @@ export default function App() {
                    arrayCertas.push(letra);
                    console.log(arrayCertas);
                    if(arrayCertas.length===palavra.length||vida===6){
-                    setResultado(palavra);
+                    setResultado(string.split(""));
                    }
                 }
             }
@@ -57,7 +58,7 @@ export default function App() {
     }
     function fimDeJogo(letra){
         if(vida>=6){
-            setResultado(palavra);
+            setResultado(string.split(""));
         }
         if (palavra.length === 0){
             alert("escolha uma palavra");
