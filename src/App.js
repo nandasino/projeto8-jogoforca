@@ -81,20 +81,25 @@ export default function App() {
     return (
         <div className='conteudo'>
             <div className='forca'>
-                <img src= {imagem}></img>
-                <p>Vidas usadas: {vida}</p>
-                <button onClick={escolherPalavra}>Escolher a palavra</button>
-                <div className={resultado.length===0? "aparece": "some"}>{palavra.map((l)=>(letrasCertas.includes(l)? l: "_ "))}</div>
-                <div className={vida<6? "verde": "vermelho"}>{resultado}</div>
+                <div className="imagem">
+                    <img data-identifier="game-image" src= {imagem}></img>
+                </div>
+                <div className="escolher-dica">
+                    <button data-identifier="choose-word" onClick={escolherPalavra}>Escolher palavra</button>
+                    <div className="dica">
+                        <div data-identifier="word" className={resultado.length===0? "aparece": "some"}>{palavra.map((l)=>(letrasCertas.includes(l)? l: "_ "))}</div>
+                        <div className={vida<6? "verde": "vermelho"}>{resultado}</div>
+                    </div>
+                </div>
             </div>
             <div className='teclado'>
-                {alfabeto.map((l)=>
-                <div onClick={ vida<6 && palavra.length !== 0 && !tentativas.includes(l) && resultado.length ===0
+                {alfabeto.map((l,index)=>
+                <div data-identifier="letter" onClick={ vida<6 && palavra.length !== 0 && !tentativas.includes(l) && resultado.length ===0
                 ? ()=> tentarLetra(l): ()=>fimDeJogo(l) } 
-                className={ `botao ${vida<6 && palavra.length !== 0 && !tentativas.includes(l) && resultado.length ===0 ? "azul": "cinza"}`}
+                key={index} className={ `botao ${vida<6 && palavra.length !== 0 && !tentativas.includes(l) && resultado.length ===0 ? "azul": "cinza"}`}
                 >{l}</div>)}
             </div>
-            <div className='chute'><p>Já sei a palavra</p><input placeholder="" value={chute} onChange={e => setChute(e.target.value)} /><button onClick={chutar}>Chutar</button></div>
+            <div className='chute'><p>Já sei a palavra</p><input data-identifier="type-guess" placeholder="" value={chute} onChange={e => setChute(e.target.value)} /><button data-identifier="guess-button" onClick={chutar}>Chutar</button></div>
         </div>
     );
 }

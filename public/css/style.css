@@ -1,3 +1,6 @@
+*{
+    font-weight: bold;
+}
 .conteudo{
     width: 100%;
     display: flex;
@@ -6,32 +9,56 @@
     align-items:center;
 }
 .forca{
+    width: 600px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .forca button{
-    width: 15s0px;
+    width: 120px;
     height: 50px;
 }
+.escolher-dica{
+    width: 50%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.escolher-dica button{
+    background-color:  #27ae60;
+    border-radius: 5px;
+    height: 50px;
+    width: 150px;
+    color: white;
+    border: none;
+    font-size: 15px;
+}
+.imagem{
+    width: 50%;
+}
 .conteudo img{
-    width: 40%;
+    width: 300px;
 }
 .teclado{
-    width: 700px;
+    width: 650px;
     height: 100px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border: 1px solid black;
 }
 .botao{
     width: 40px;
     height: 40px;
-    border: 1px solid black;    
+    border-radius: 3px;
+    color: #41769d;
     margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    font-weight: bold;
 }
 .chute{
     width: 400px;
@@ -40,14 +67,27 @@
     justify-content: space-between;
     align-items: center;
 }
+.chute button{
+    width: 70px;
+    height: 30px;
+    border: 2px solid #41769d; 
+    background-color: #e1ecf4;
+    color: #41769d;  
+    border-radius: 3px;
+    font-size: 15px;
+}
 .azul{
-    background-color: aqua;
+    border: 2px solid #41769d; 
+    background-color: #e1ecf4;
+    color: #41769d;
 }
 .cinza{
-    background-color: gray;
+    background-color:  #9faab5;
+    color: #79818b;
+    border: 2px solid #79818b;
 }
 .aparece{
-    font-size: 40px;
+    display: flex;
 }
 .some{
     display: none;
@@ -57,4 +97,11 @@
 }
 .vermelho{
     color: red;
+}
+.dica{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
 }
