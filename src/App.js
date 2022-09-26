@@ -36,7 +36,6 @@ export default function App() {
     function tentarLetra(letra){
         setTentativas([...tentativas,letra]);
         if(palavra.includes(letra)){
-            console.log("tem essa letra");
             for(let i=0; i< palavra.length; i++){
                 if(letra=== palavra[i]){
                    setLetrasCertas([...letrasCertas,letra]);
@@ -49,7 +48,6 @@ export default function App() {
             }
         }
         else{
-            console.log("não tem essa letra");
             setVida(vida+1);
             setImagem(imagens[vida+1]);
         }
