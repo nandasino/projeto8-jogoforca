@@ -53,13 +53,14 @@ export default function App() {
             <div className='forca'>
                 <img src= {imagem}></img>
                 <p>Vidas usadas: {vida}</p>
-                <button onClick={escolherPalavra}>Escolher a palavra</button>
+                <button onClick={tentativas.length===0? escolherPalavra: ()=>alert("você não pode mais escolher uma palavra")}>Escolher a palavra</button>
                 {tentativas}
+                <li>{letrasCertas}</li>
                 <div>{palavra.map((l)=>(letrasCertas.includes(l)? l: "_ "))}</div>
             </div>
             <div className='teclado'>
                 {alfabeto.map((l)=>
-                <div onClick={ vida<6 && palavra.length !== 0 && !tentativas.includes(l) 
+                <div onClick={ vida<6 && palavra.length !== 0 && !tentativas.includes(l)
                 ? ()=> tentarLetra(l): ()=>fimDeJogo(l) } 
                 className={ `botao ${vida<6 && palavra.length !== 0 && !tentativas.includes(l) ? "azul": "cinza"}`}
                 >{l}</div>)}
