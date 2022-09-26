@@ -73,6 +73,9 @@ export default function App() {
             setImagem(imagens[6]);
         }
     }
+    function fazNada(){
+        return;
+    }
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     return (
         <div className='conteudo'>
@@ -95,7 +98,7 @@ export default function App() {
                 key={index} className={ `botao ${vida<6 && palavra.length !== 0 && !tentativas.includes(l) && resultado.length ===0 ? "azul": "cinza"}`}
                 >{l}</div>)}
             </div>
-            <div className='chute'><p>Já sei a palavra</p><input data-identifier="type-guess" placeholder="" value={chute} onChange={e => setChute(e.target.value)} /><button data-identifier="guess-button" onClick={chutar}>Chutar</button></div>
+            <div className='chute'><p>Já sei a palavra</p><input data-identifier="type-guess" placeholder="" value={chute} onChange={e => setChute(e.target.value)} /><button data-identifier="guess-button" onClick={resultado.length===0? chutar: fazNada}>Chutar</button></div>
         </div>
     );
 }
