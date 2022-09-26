@@ -16,6 +16,13 @@ export default function App() {
     const [resultado, setResultado]= useState([]);
 
     function escolherPalavra(){
+        setVida(0);
+        setPalavra([]);
+        setImagem(imagens[0]);
+        setTentativas([]);
+        setLetrasCertas([]);
+        setArrayCertas([]);
+        setResultado([]);
         const embalharado = palavras.sort(comparador);
         const novaPalavra= embalharado[0];
         console.log(novaPalavra);
@@ -62,7 +69,7 @@ export default function App() {
             <div className='forca'>
                 <img src= {imagem}></img>
                 <p>Vidas usadas: {vida}</p>
-                <button onClick={tentativas.length===0? escolherPalavra: ()=>alert("você não pode mais escolher uma palavra")}>Escolher a palavra</button>
+                <button onClick={escolherPalavra}>Escolher a palavra</button>
                 <div className={resultado.length===0? "aparece": "some"}>{palavra.map((l)=>(letrasCertas.includes(l)? l: "_ "))}</div>
                 <div className={vida<6? "verde": "vermelho"}>{resultado}</div>
             </div>
